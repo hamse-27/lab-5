@@ -1,11 +1,39 @@
-console.log("hello");
+"use-strict";
 
-const  menuToggle = document.getElementById('menu-toggle');
-const  menuNav = document.getElementById('menu-nav');
+const theForm = document.getElementById("the-form")
+const theDate = document.getElementById("date")
+const getDate = document.querySelector('input[type="date"]')
+const x = theDate.innerText;
+const color = document.getElementById("colour")
+const value = document.getElementById("the-value")
+const theRange = document.getElementById("range")
 
-toggleMenu = () => {
-  menuNav.classList.toggle("menu-toggle");
-  console.log("called toggle menu");
+getDate.addEventListener("change", showDate)
+
+
+function showDate() {
+  const d = new Date(getDate.value);
+  parseDate(d)
 }
 
-menuToggle.addEventListener("click", toggleMenu);
+function parseDate(d){
+theDate.innerText = `${x} ${d.toDateString()}`;
+}
+
+let today = new Date();
+parseDate(today);
+
+function setColor(){
+  value.style.backgroundColor = color.value
+}
+
+theForm.addEventListener("input", setColor)
+
+setColor();
+
+theRange.addEventListener("input", rangeAction)
+
+function rangeAction(){
+  value.innerText = theRange.value
+  value.style.width = `${theRange.value}%`
+}
